@@ -223,4 +223,25 @@ z-index: 10;
       }
     }
 
+    /* 商品選項表單排版 */
+.form-group {
+  display: flex;
+  align-items: center;
+  margin: 8px 0;
+}
+
+.form-group label {
+  width: 60px;          /* 統一標籤寬度 */
+  font-size: 14px;
+  color: #333;
+}
+
+.form-group select,
+.form-group input[type="number"] {
+  flex: 1;              /* 讓輸入框/下拉選單自動填滿剩餘空間 */
+  padding: 6px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
     

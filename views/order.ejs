@@ -61,49 +61,147 @@
     © 2025 飲料店線上訂購系統
   </footer>
 
-  <script>
-    const products = [
-      { name: '經典紅茶', price: 35, img: 'https://images.unsplash.com/photo-1511920170033-f8396924c348' },
-      { name: '珍珠奶茶', price: 55, img: '/img/article-63975a6386038.jpg' },
-      { name: '四季春青茶', price: 40, img: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93' },
-      { name: '烏龍奶茶', price: 50, img: 'https://images.unsplash.com/photo-1497534446932-c925b458314e' }
-    ]
+<script>
+  const products = [
+    { 
+      name: '月光玫瑰', 
+      price: { M: 35, L: 45 }, 
+      img: 'https://images.unsplash.com/photo-1511920170033-f8396924c348' 
+    },
+    { 
+      name: '珍珠奶茶', 
+      price: { M: 55, L: 65 }, 
+      img: '/img/article-63975a6386038.jpg' 
+    },
+    { 
+      name: '四季春青茶', 
+      price: { M: 40, L: 50 }, 
+      img: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93' 
+    },
+    { 
+      name: '烏龍奶茶', 
+      price: { M: 50, L: 60 }, 
+      img: 'https://images.unsplash.com/photo-1497534446932-c925b458314e' 
+    }
+  ];
 
-    let cart = []
-    const productDiv = document.getElementById('products')
+  let cart = [];
+  const productDiv = document.getElementById('products');
 
-    products.forEach((p, i) => {
-      productDiv.innerHTML += `
-  <div class="card">
-    <img src="${p.img}">
-    <div class="info">
-      <h4>${p.name}</h4>
-      <p>NT$ ${p.price}</p>
-      <button onclick="addToCart(${i})">加入購物車</button>
-    </div>
-  </div>`
-    })
+// 商品渲染：加上尺寸、數量、冰塊、甜度選擇
+products.forEach((p, i) => {
+  productDiv.innerHTML += `
+    <div class="card">
+      <img src="${p.img}">
+      <div class="info">
+        <h4>${p.name}</h4>
+        <p>M: NT$ ${p.price.M} / L: NT$ ${p.price.L}</p>
 
-    function addToCart(i) { cart.push(products[i]); renderCart() }
+        <div class="form-group">
+          <label for="size-${i}">尺寸：</label>
+          <select id="size-${i}">
+            <option value="M">M</option>
+            <option value="L">L</option>
+          </select>
+        </div>
 
-    function renderCart() {
-      const list = document.getElementById('cartList')
-      list.innerHTML = ''
-      let total = 0
-      cart.forEach(p => {
-        total += p.price
-        list.innerHTML += `<li><span>${p.name}</span><span>$${p.price}</span></li>`
-      })
-      document.getElementById('total').innerText = total
+        <div class="form-group">
+          <label for="qty-${i}">數量：</label>
+          <input type="number" id="qty-${i}" value="1" min="1">
+        </div>
+
+        <div class="form-group">
+          <label for="ice-${i}">冰塊：</label>
+          <select id="ice-${i}">
+            <option value="正常冰">正常冰</option>
+            <option value="少冰">少冰</option>
+            <option value="去冰">去冰</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="sugar-${i}">甜度：</label>
+          <select id="sugar-${i}">
+            <option value="正常糖">正常糖</option>
+            <option value="半糖">半糖</option>
+            <option value="微糖">微糖</option>
+            <option value="無糖">無糖</option>
+          </select>
+        </div>
+
+        <button onclick="addToCart(${i})">加入購物車</button>
+      </div>
+    </div>`;
+});
+
+  function addToCart(i) {
+    const sizeSelect = document.getElementById(`size-${i}`);
+    const qtyInput = document.getElementById(`qty-${i}`);
+    const iceSelect = document.getElementById(`ice-${i}`);
+    const sugarSelect = document.getElementById(`sugar-${i}`);
+
+    const size = sizeSelect.value;
+    const qty = parseInt(qtyInput.value);
+    const ice = iceSelect.value;
+    const sugar = sugarSelect.value;
+
+    cart.push({ 
+      name: products[i].name, 
+      size: size, 
+      price: products[i].price[size], 
+      qty: qty,
+      ice: ice,
+      sugar: sugar
+    });
+    renderCart();
+  }
+
+  function renderCart() {
+    const list = document.getElementById('cartList');
+    list.innerHTML = '';
+    let total = 0;
+
+    cart.forEach((p, index) => {
+      const subtotal = p.price * p.qty;
+      total += subtotal;
+      list.innerHTML += `
+        <li>
+          <span>${p.name} (${p.size}) x ${p.qty} - ${p.ice}, ${p.sugar}</span>
+          <span>$${subtotal}</span>
+          <button onclick="removeFromCart(${index})">刪除</button>
+        </li>`;
+    });
+
+    document.getElementById('total').innerText = total;
+  }
+
+  function removeFromCart(index) {
+    cart.splice(index, 1);
+    renderCart();
+  }
+
+  function submitOrder() {
+    const nameInput = document.getElementById('name');
+    const phoneInput = document.getElementById('phone');
+    const pickupSelect = document.getElementById('pickup');
+
+    if (cart.length === 0) {
+      alert('購物車是空的');
+      return;
+    }
+    if (!nameInput.value || !phoneInput.value || !pickupSelect.value) {
+      alert('請填寫完整資料');
+      return;
     }
 
-    function submitOrder() {
-      if (cart.length === 0) { alert('購物車是空的'); return }
-      if (!name.value || !phone.value || !pickup.value) { alert('請填寫完整資料'); return }
-      alert('訂單已送出，感謝您的訂購！')
-      cart = []; renderCart(); name.value = ''; phone.value = ''; pickup.value = ''
-    }
-  </script>
+    alert('訂單已送出，感謝您的訂購！');
+    cart = [];
+    renderCart();
+    nameInput.value = '';
+    phoneInput.value = '';
+    pickupSelect.value = '';
+  }
+</script>
 
 <script src="js/menu.js"></script>
 </body>
