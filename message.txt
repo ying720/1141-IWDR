@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>線上訂購</title>
+  <link rel="stylesheet" href="css/order.css">
+</head>
+
+<body>
+
+  <!-- ===== Navbar ===== -->
+  <header>
+    <nav class="navbar">
+      <ul class="nav-links">
+        <li><a href="/homepage">首頁</a></li>
+        <li><a href="/menu">菜單</a></li>
+        <li><a href="/order" class="active">線上訂購</a></li>
+        <li><a href="/storepage">門市據點</a></li>
+        <li><a href="/brandStory">品牌故事</a></li>
+        <li><a href="/frequentlyaskedquestions">常見問題</a></li>
+      </ul>
+
+      <div class="hamburger">
+        <span></span><span></span><span></span>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>線上訂購</h1>
+    </section>
+
+    <section class="container">
+      <!-- 商品區 -->
+      <div class="products" id="products"></div>
+
+      <!-- 購物車 -->
+      <aside class="cart">
+        <h3>購物車</h3>
+        <ul id="cartList"></ul>
+        <p>總金額：NT$ <span id="total">0</span></p>
+
+        <div class="checkout">
+          <input type="text" id="name" placeholder="姓名" />
+          <input type="tel" id="phone" placeholder="電話" />
+          <select id="pickup">
+            <option value="">取餐方式</option>
+            <option>門市自取</option>
+            <option>外送</option>
+          </select>
+          <button onclick="submitOrder()">送出訂單</button>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <footer>
+    © 2025 飲料店線上訂購系統
+  </footer>
+
+  <script>
+    const products = [
+      { name: '經典紅茶', price: 35, img: 'https://images.unsplash.com/photo-1511920170033-f8396924c348' },
+      { name: '珍珠奶茶', price: 55, img: '/img/article-63975a6386038.jpg' },
+      { name: '四季春青茶', price: 40, img: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93' },
+      { name: '烏龍奶茶', price: 50, img: 'https://images.unsplash.com/photo-1497534446932-c925b458314e' }
+    ]
+
+    let cart = []
+    const productDiv = document.getElementById('products')
+
+    products.forEach((p, i) => {
+      productDiv.innerHTML += `
+        <div class="card">
+          <img src="${p.img}">
+          <div class="info">
+            <h4>${p.name}</h4>
+            <p>NT$ ${p.price}</p>
+            <button onclick="addToCart(${i})">加入購物車</button>
+          </div>
+        </div>`
+    })
+
+    function addToCart(i) {
+      cart.push(products[i])
+      renderCart()
+    }
+
+    function renderCart() {
+      const list = document.getElementById('cartList')
+      list.innerHTML = ''
+      let total = 0
+
+      cart.forEach(p => {
+        total += p.price
+        list.innerHTML += `<li><span>${p.name}</span><span>$${p.price}</span></li>`
+      })
+
+      document.getElementById('total').innerText = total
+    }
+
+    // ✅ 真的送到後端 /api/order，並回傳 order_id
+    async function submitOrder() {
+      const nameEl = document.getElementById('name')
+      const phoneEl = document.getElementById('phone')
+      const pickupEl = document.getElementById('pickup')
+
+      if (cart.length === 0) { alert('購物車是空的'); return }
+      if (!nameEl.value.trim() || !phoneEl.value.trim() || !pickupEl.value) {
+        alert('請填寫完整資料')
+        return
+      }
+
+      const payload = {
+        customer_name: nameEl.value.trim(),
+        phone: phoneEl.value.trim(),
+        pickup_method: pickupEl.value,
+        cart: cart.map(p => ({ name: p.name, price: p.price }))
+      }
+
+      try {
+        const res = await fetch('/api/order', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        })
+
+        const data = await res.json().catch(() => ({}))
+
+        if (!res.ok) {
+          alert(`送出失敗：${data.error || '未知錯誤'}`)
+          return
+        }
+
+        alert(`訂單新增成功！訂單編號：${data.order_id}`)
+
+        cart = []
+        renderCart()
+        nameEl.value = ''
+        phoneEl.value = ''
+        pickupEl.value = ''
+      } catch (err) {
+        console.error(err)
+        alert('送出失敗：無法連線到伺服器')
+      }
+    }
+  </script>
+
+  <!-- 如果你沒有 order.js，可以先刪掉這行 -->
+  <script src="js/order.js"></script>
+</body>
+
+</html>

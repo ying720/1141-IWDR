@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>線上訂購</title>
   <link rel="stylesheet" href="css/order.css">
-
 </head>
 
 <body>
@@ -17,17 +16,18 @@
       <ul class="nav-links">
         <li><a href="/homepage">首頁</a></li>
         <li><a href="/menu">菜單</a></li>
-        <li><a href="/order"  class="active">線上訂購</a></li>
+        <li><a href="/order" class="active">線上訂購</a></li>
         <li><a href="/storepage">門市據點</a></li>
         <li><a href="/brandStory">品牌故事</a></li>
         <li><a href="/frequentlyaskedquestions">常見問題</a></li>
       </ul>
-      
-      <div class = "hamburger">
+
+      <div class="hamburger">
         <span></span><span></span><span></span>
       </div>
     </nav>
   </header>
+
   <main>
     <section class="hero">
       <h1>線上訂購</h1>
@@ -65,22 +65,122 @@
   const products = [
     { 
       name: '月光玫瑰', 
-      price: { M: 35, L: 45 }, 
-      img: 'https://images.unsplash.com/photo-1511920170033-f8396924c348' 
+      price: { M: 90, L: 110 }, 
+      img: '/img/order-img/1moonlight_rose.png'
     },
     { 
-      name: '珍珠奶茶', 
-      price: { M: 55, L: 65 }, 
-      img: '/img/article-63975a6386038.jpg' 
+      name: '晨露檸檬', 
+      price: { M: 85, L: 100 }, 
+      img: '/img/order-img/2morning_lemon.png' 
     },
     { 
-      name: '四季春青茶', 
-      price: { M: 40, L: 50 }, 
-      img: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93' 
+      name: '雲端焦糖', 
+      price: { M: 95, L: 115 }, 
+      img: '/img/order-img/3cloud_caramel.png' 
     },
     { 
-      name: '烏龍奶茶', 
-      price: { M: 50, L: 60 }, 
+      name: '星雲莓果', 
+      price: { M: 100, L: 120 }, 
+      img: '/img/order-img/4nebula_berry.png' 
+    },
+    { 
+      name: '月影抹茶', 
+      price: { M: 100, L: 120 }, 
+      img: '/img/order-img/5moonlight_matcha.png' 
+    },
+    { 
+      name: '焦糖雲朵', 
+      price: { M: 95, L: 110 }, 
+      img: '/img/order-img/6caramel_cloud.png' 
+    },
+        { 
+      name: '星語茉莉', 
+      price: { M: 90, L: 110 }, 
+      img: '/img/order-img/7star_jasmine.png' 
+    },
+    { 
+      name: '琥珀烏龍', 
+      price: { M: 85, L: 100 }, 
+      img: '/img/order-img/8amber_oolong.png' 
+    },
+    { 
+      name: '霧之莓語', 
+      price: { M: 95, L: 115 }, 
+      img: '/img/order-img/9fog_berry.png' 
+    },
+        { 
+      name: '星霧奶香', 
+      price: { M: 95, L: 110 }, 
+      img: '/img/order-img/10star_fog_milk.png' 
+    },
+    { 
+      name: '晨曦蜜桃', 
+      price: { M: 85, L: 100 }, 
+      img: '/img/order-img/11morning_peach.png' 
+    },
+    { 
+      name: '月紗花語', 
+      price: { M: 90, L: 110 }, 
+      img: '/img/order-img/12moon_fog_flower.png' 
+    },
+        { 
+      name: '暮光摩卡', 
+      price: { M: 110, L: 130 }, 
+      img: '/img/order-img/13moonlight_mocha.png' 
+    },
+    { 
+      name: '星夜拿鐵', 
+      price: { M: 115, L: 135 }, 
+      img: '/img/order-img/14star_night_latte.png' 
+    },
+    { 
+      name: '月影卡布奇諾', 
+      price: { M: 120, L: 140 }, 
+      img: '/img/order-img/15moonlight_cappuccino.png' 
+    },
+        { 
+      name: '星落白玉奶茶', 
+      price: { M: 95, L: 115 }, 
+      img: '/img/order-img/16star_fog_milk.png'
+    },
+    { 
+      name: '露晨青檸氣泡', 
+      price: { M: 85, L: 100 }, 
+      img: '/img/order-img/17morning_lemon_bubble.png' 
+    },
+    { 
+      name: '月霜琥珀紅茶', 
+      price: { M: 90, L: 110 }, 
+      img: '/img/order-img/18moon_fog_amber_tea.png'
+    },
+    { 
+      name: '星空琉璃', 
+      price: { M: 95, L: 115 }, 
+      img: '/img/order-img/19star_luminous.png' 
+    },
+    { 
+      name: '月泉白霜', 
+      price: { M: 90, L: 110 }, 
+      img: '/img/order-img/20moon_fog_white.png' 
+    },
+    { 
+      name: '曦光莓語', 
+      price: { M: 100, L: 120}, 
+      img: '/img/order-img/21morning_berry.png' 
+    },
+    { 
+      name: '星澈雲泡', 
+      price: { M: 95, L: 115 }, 
+      img: '/img/order-img/22star_cloud_bubble.png' 
+    },
+    { 
+      name: '月霧雪頂', 
+      price: { M: 105, L: 125}, 
+      img: '/img/order-img/23moon_fog_snow.png' 
+    },
+    { 
+      name: '曦光氣泡', 
+      price: { M: 90, L: 110}, 
       img: 'https://images.unsplash.com/photo-1497534446932-c925b458314e' 
     }
   ];
@@ -88,122 +188,168 @@
   let cart = [];
   const productDiv = document.getElementById('products');
 
-// 商品渲染：加上尺寸、數量、冰塊、甜度選擇
-products.forEach((p, i) => {
-  productDiv.innerHTML += `
-    <div class="card">
-      <img src="${p.img}">
-      <div class="info">
-        <h4>${p.name}</h4>
-        <p>M: NT$ ${p.price.M} / L: NT$ ${p.price.L}</p>
+  // 商品渲染：你原本這段可留著
+  products.forEach((p, i) => {
+    productDiv.innerHTML += `
+      <div class="card">
+        <img src="${p.img}">
+        <div class="info">
+          <h4>${p.name}</h4>
+          <p>M: NT$ ${p.price.M} / L: NT$ ${p.price.L}</p>
 
-        <div class="form-group">
-          <label for="size-${i}">尺寸：</label>
-          <select id="size-${i}">
-            <option value="M">M</option>
-            <option value="L">L</option>
-          </select>
+          <div class="form-group">
+            <label for="size-${i}">尺寸：</label>
+            <select id="size-${i}">
+              <option value="M">M</option>
+              <option value="L">L</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="qty-${i}">數量：</label>
+            <input type="number" id="qty-${i}" value="1" min="1">
+          </div>
+
+          <div class="form-group">
+            <label for="ice-${i}">冰塊：</label>
+            <select id="ice-${i}">
+              <option value="正常冰">正常冰</option>
+              <option value="少冰">少冰</option>
+              <option value="去冰">去冰</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="sugar-${i}">甜度：</label>
+            <select id="sugar-${i}">
+              <option value="正常糖">正常糖</option>
+              <option value="半糖">半糖</option>
+              <option value="微糖">微糖</option>
+              <option value="無糖">無糖</option>
+            </select>
+          </div>
+
+          <button onclick="addToCart(${i})">加入購物車</button>
         </div>
+      </div>`;
+  });
 
-        <div class="form-group">
-          <label for="qty-${i}">數量：</label>
-          <input type="number" id="qty-${i}" value="1" min="1">
-        </div>
-
-        <div class="form-group">
-          <label for="ice-${i}">冰塊：</label>
-          <select id="ice-${i}">
-            <option value="正常冰">正常冰</option>
-            <option value="少冰">少冰</option>
-            <option value="去冰">去冰</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="sugar-${i}">甜度：</label>
-          <select id="sugar-${i}">
-            <option value="正常糖">正常糖</option>
-            <option value="半糖">半糖</option>
-            <option value="微糖">微糖</option>
-            <option value="無糖">無糖</option>
-          </select>
-        </div>
-
-        <button onclick="addToCart(${i})">加入購物車</button>
-      </div>
-    </div>`;
-});
-
+  // ✅ 新版：加入購物車要存「客製化選項」
   function addToCart(i) {
-    const sizeSelect = document.getElementById(`size-${i}`);
-    const qtyInput = document.getElementById(`qty-${i}`);
-    const iceSelect = document.getElementById(`ice-${i}`);
-    const sugarSelect = document.getElementById(`sugar-${i}`);
+    const p = products[i];
 
-    const size = sizeSelect.value;
-    const qty = parseInt(qtyInput.value);
-    const ice = iceSelect.value;
-    const sugar = sugarSelect.value;
+    const size = document.getElementById(`size-${i}`).value; // M / L
+    const qty = Math.max(1, parseInt(document.getElementById(`qty-${i}`).value, 10) || 1);
+    const ice = document.getElementById(`ice-${i}`).value;
+    const sugar = document.getElementById(`sugar-${i}`).value;
 
-    cart.push({ 
-      name: products[i].name, 
-      size: size, 
-      price: products[i].price[size], 
-      qty: qty,
-      ice: ice,
-      sugar: sugar
+    const unitPrice = Number(p.price[size]); // p.price.M or p.price.L
+    if (!Number.isFinite(unitPrice)) {
+      alert('價格資料有誤');
+      return;
+    }
+
+    cart.push({
+      name: p.name,
+      size,
+      qty,
+      ice,
+      sugar,
+      unitPrice
     });
+
     renderCart();
   }
 
+  // ✅ 新版：正確計算總金額 + 顯示客製化明細 + 可刪除
   function renderCart() {
     const list = document.getElementById('cartList');
     list.innerHTML = '';
     let total = 0;
 
-    cart.forEach((p, index) => {
-      const subtotal = p.price * p.qty;
+    cart.forEach((item, idx) => {
+      const subtotal = item.unitPrice * item.qty;
       total += subtotal;
+
       list.innerHTML += `
-        <li>
-          <span>${p.name} (${p.size}) x ${p.qty} - ${p.ice}, ${p.sugar}</span>
-          <span>$${subtotal}</span>
-          <button onclick="removeFromCart(${index})">刪除</button>
+        <li style="display:flex; justify-content:space-between; gap:12px; margin:8px 0;">
+          <div>
+            <div><b>${item.name}</b>（${item.size}）x ${item.qty}</div>
+            <div style="font-size: 12px; opacity:.8;">${item.ice} / ${item.sugar}</div>
+          </div>
+          <div style="text-align:right;">
+            <div>NT$ ${subtotal}</div>
+            <button onclick="removeItem(${idx})" style="margin-top:4px;">刪除</button>
+          </div>
         </li>`;
     });
 
     document.getElementById('total').innerText = total;
   }
 
-  function removeFromCart(index) {
-    cart.splice(index, 1);
+  function removeItem(idx) {
+    cart.splice(idx, 1);
     renderCart();
   }
 
-  function submitOrder() {
-    const nameInput = document.getElementById('name');
-    const phoneInput = document.getElementById('phone');
-    const pickupSelect = document.getElementById('pickup');
+  // ✅ 新版：送到後端的 cart 結構要改
+  async function submitOrder() {
+    const nameEl = document.getElementById('name');
+    const phoneEl = document.getElementById('phone');
+    const pickupEl = document.getElementById('pickup');
 
-    if (cart.length === 0) {
-      alert('購物車是空的');
-      return;
-    }
-    if (!nameInput.value || !phoneInput.value || !pickupSelect.value) {
+    if (cart.length === 0) { alert('購物車是空的'); return; }
+    if (!nameEl.value.trim() || !phoneEl.value.trim() || !pickupEl.value) {
       alert('請填寫完整資料');
       return;
     }
 
-    alert('訂單已送出，感謝您的訂購！');
-    cart = [];
-    renderCart();
-    nameInput.value = '';
-    phoneInput.value = '';
-    pickupSelect.value = '';
+    const payload = {
+      customer_name: nameEl.value.trim(),
+      phone: phoneEl.value.trim(),
+      pickup_method: pickupEl.value,
+      cart: cart.map(item => ({
+        name: item.name,
+        size: item.size,
+        qty: item.qty,
+        ice: item.ice,
+        sugar: item.sugar,
+        unitPrice: item.unitPrice,
+        subtotal: item.unitPrice * item.qty
+      }))
+    };
+
+    try {
+      const res = await fetch('/api/order', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+
+      const data = await res.json().catch(() => ({}));
+
+      if (!res.ok) {
+        alert(`送出失敗：${data.error || '未知錯誤'}`);
+        return;
+      }
+
+      alert(`訂單新增成功！訂單編號：${data.order_id}`);
+
+      cart = [];
+      renderCart();
+      nameEl.value = '';
+      phoneEl.value = '';
+      pickupEl.value = '';
+    } catch (err) {
+      console.error(err);
+      alert('送出失敗：無法連線到伺服器');
+    }
   }
 </script>
 
-<script src="js/menu.js"></script>
+
+  <!-- 如果你沒有 order.js，可以先刪掉這行 -->
+  <script src="js/order.js"></script>
 </body>
 
 </html>
